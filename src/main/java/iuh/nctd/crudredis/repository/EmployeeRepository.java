@@ -2,6 +2,7 @@ package iuh.nctd.crudredis.repository;
 
 import iuh.nctd.crudredis.entity.Employee;
 import org.springframework.data.redis.core.HashOperations;
+import org.springframework.data.redis.core.ListOperations;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -12,10 +13,12 @@ public class EmployeeRepository {
 
     private HashOperations hashOperations;
     private RedisTemplate redisTemplate;
+    private ListOperations listOperations;
     private final static String  EMPLOYEE_KEY = "EMPLOYEE";
 
     public EmployeeRepository(RedisTemplate redisTemplate) {
         this.hashOperations = redisTemplate.opsForHash();
+        this.listOperations = redisTemplate.opsForList();
         this.redisTemplate = redisTemplate;
     }
 
